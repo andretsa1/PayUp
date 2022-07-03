@@ -15,7 +15,7 @@ function Person(props) {
 
     const add = () => {
         var copy = JSON.parse(JSON.stringify(prices));
-        copy[count] = JSON.stringify(0);
+        copy[count] = 0;
         setPrices(copy);
         setCount(count+1);
     }
@@ -30,17 +30,16 @@ function Person(props) {
     }
 
     const del = (key) => {
-        var copy = JSON.parse(JSON.stringify(prices));
-        delete copy[key];
-        setPrices(copy);
+        // var copy = JSON.parse(JSON.stringify(prices));
+        delete prices[key];
+        // setPrices(copy);
+        calculate();
     }
 
     return (
         <div className="App">
             <button onClick={()=>props.del(props.id)}>remove</button>
-
             <button onClick={add}>Add</button>
-
             {Object.keys(prices).map((k) =>
                 <div>
                     <Price key={k} id={k} update={update} del={del}/>
