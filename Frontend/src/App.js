@@ -4,7 +4,6 @@ import  React, { useState, useRef} from 'react';
 import Price from "./Price";
 import Person from "./Person";
 
-
 function App() {
     const [people, setPeople] = useState({});
     const [actualTotal, setActualTotal] = useState(0);
@@ -62,14 +61,12 @@ function App() {
         copy[key] = subtotal;
         setPeople(copy);
     }
-    console.log(inputMap.current);
-
 
     return (
         <div className="App">
             <h1 id = "Pay">Pay<span id = "Up">Up</span></h1>
 
-            <button onClick={add}>Add</button>
+            <button onClick={add}>Add New Person</button>
 
             <div id="peoples">
                 {Object.keys(people).map((k) =>
