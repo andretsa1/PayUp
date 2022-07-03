@@ -11,7 +11,6 @@ function App() {
     const [factor, setFactor] = useState(1);
     const [total, setTotal] = useState(0);
     const [count, setCount] = useState(0);
-    const inputs {[]}
 
     const calculate = () => {
         let total = 0;
