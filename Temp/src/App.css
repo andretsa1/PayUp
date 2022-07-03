@@ -1,0 +1,19 @@
+.App {
+    text-align: center;
+}
+
+#Pay {
+    font-family: Lucida Grande;
+    color: blue;
+}
+
+#Up {
+    color: black;
+}
+
+#peoples {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
