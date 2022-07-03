@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import  React, { useState } from 'react';
+import  React, { useState, useRef} from 'react';
 import Price from "./Price";
 import Person from "./Person";
 
@@ -11,6 +11,7 @@ function App() {
     const [factor, setFactor] = useState(1);
     const [total, setTotal] = useState(0);
     const [count, setCount] = useState(0);
+    const inputs {[]}
 
     const calculate = () => {
         let total = 0;
@@ -26,16 +27,15 @@ function App() {
     //     copy[id] = res;
     //     setPeople(copy);
     // }
-
     const add = () => {
-        var copy = JSON.parse(JSON.stringify(people));
+        let copy = JSON.parse(JSON.stringify(people));
         copy[count] = JSON.stringify(0);
         setPeople(copy);
         setCount(count+1);
     }
 
     const del = (key) => {
-        var copy = JSON.parse(JSON.stringify(people));
+        let copy = Object.assign({},people)
         delete copy[key];
         setPeople(copy);
     }
@@ -45,10 +45,12 @@ function App() {
     }
 
     const calcTotal = (key,subtotal) => {
-        var copy = JSON.parse(JSON.stringify(people));
+        let copy = JSON.parse(JSON.stringify(people));
         copy[key] = subtotal;
         setPeople(copy);
     }
+
+    console.log(people);
 
     return (
         <div className="App">
@@ -59,8 +61,7 @@ function App() {
             <div id="peoples">
                 {Object.keys(people).map((k) =>
                     <div>
-                        <p>Person: {k}</p>
-                        <Person key={k} id={k} del={del} calcTotal={calcTotal}/>
+                        <Person key={k} id={k} del={del} calcTotal={calcTotal} input = {}/>
                         <p>To Pay: {Math.round(parseFloat(people[k])*factor*1000)/1000}</p>
                     </div>
                 )}
