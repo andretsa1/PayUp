@@ -4,7 +4,8 @@ function Price (props){
     const [price, setPrice] = useState(0);
 
     const set = (event) => {
-        var tmp = parseFloat(event.target.value);
+        var tmp = (event.target.value === "") ? 0 : parseFloat(event.target.value);
+
         setPrice(tmp);
         props.update(props.id,tmp);
     }

@@ -1,16 +1,17 @@
 import Price from "./Price"
-import  React, { useState } from 'react';
-
+import  React, { useState, useEffect } from 'react';
+import './Person.css';
 function Person(props) {
     const [prices, setPrices] = useState({});
     const [count, setCount] = useState(0);
     const [total, setTotal] = useState(0);
 
+    useEffect(()=>calculate(),[prices,total]);
+
     const update = (id,res) => {
-        // var copy = JSON.parse(JSON.stringify(prices));
-        prices[id] = res;
-        // setPrices(copy);
-        calculate();
+        var copy = JSON.parse(JSON.stringify(prices));
+        copy[id] = res;
+        setPrices(copy);
         props.changeInput(props.id,id,res,false);
     }
 
@@ -19,7 +20,6 @@ function Person(props) {
         copy[count] = 0;
         setPrices(copy);
         setCount(count+1);
-        console.log(copy);
     }
 
     const calculate = () => {
@@ -32,10 +32,9 @@ function Person(props) {
     }
 
     const del = (key) => {
-        // var copy = JSON.parse(JSON.stringify(prices));
-        delete prices[key];
-        // setPrices(copy);
-        calculate();
+        var copy = JSON.parse(JSON.stringify(prices));
+        delete copy[key];
+        setPrices(copy);
         props.changeInput(props.id,key,-1,true);
     }
 
@@ -46,9 +45,9 @@ function Person(props) {
     }
 
     return (
-        <div className="App">
-            <button onClick={()=>props.del(props.id)}>remove</button>
-            <button onClick={add}>Add</button>
+        <div className="Person">
+            <button className = "Prices" onClick={add}>Add</button>
+            <button className = "Prices" onClick={()=>props.del(props.id)}>Remove</button>
             {check()}
             {(Object.keys(prices).map((k) =>
                 <div>
