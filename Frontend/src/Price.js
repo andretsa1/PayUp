@@ -16,7 +16,8 @@ function Price (props){
     return (
         <div>
             <label>Prices:</label>
-            <input onInput={set}></input>
+            {(props.value != null) ? <input value = {props.value} onInput={set}></input> :
+                <input onInput={set}></input>}
             <button onClick={d}>x</button>
         </div>
     )

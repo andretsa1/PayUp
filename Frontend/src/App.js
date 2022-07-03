@@ -12,6 +12,17 @@ function App() {
     const [total, setTotal] = useState(0);
     const [count, setCount] = useState(0);
 
+    const inputMap = useRef({});
+
+    const changeMap = (id,key,val,bool) => {
+        if (bool){
+            delete inputMap.current[id][key];
+        }
+        else {
+            inputMap.current[id][key] = val;
+        }
+    }
+
     const calculate = () => {
         let total = 0;
         for (const k in people){
@@ -26,10 +37,12 @@ function App() {
     //     copy[id] = res;
     //     setPeople(copy);
     // }
+
     const add = () => {
         let copy = JSON.parse(JSON.stringify(people));
         copy[count] = JSON.stringify(0);
         setPeople(copy);
+        inputMap.current[count] = {};
         setCount(count+1);
     }
 
@@ -37,6 +50,7 @@ function App() {
         let copy = Object.assign({},people)
         delete copy[key];
         setPeople(copy);
+        delete inputMap.current[key];
     }
 
     const totalWithTipTax = (event) => {
@@ -48,8 +62,8 @@ function App() {
         copy[key] = subtotal;
         setPeople(copy);
     }
+    console.log(inputMap.current);
 
-    console.log(people);
 
     return (
         <div className="App">
@@ -60,7 +74,7 @@ function App() {
             <div id="peoples">
                 {Object.keys(people).map((k) =>
                     <div>
-                        <Person key={k} id={k} del={del} calcTotal={calcTotal} input = {}/>
+                        <Person key={k} id={k} del={del} input={inputMap.current} changeInput = {changeMap} calcTotal={calcTotal}/>
                         <p>To Pay: {Math.round(parseFloat(people[k])*factor*1000)/1000}</p>
                     </div>
                 )}
