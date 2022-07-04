@@ -20,6 +20,7 @@ function Person(props) {
         copy[count] = 0;
         setPrices(copy);
         setCount(count+1);
+        props.input[props.id].count = count+1;
     }
 
     const calculate = () => {
@@ -39,8 +40,11 @@ function Person(props) {
     }
 
     const check = () => {
-        if (Object.keys(prices).length == 0 && Object.keys(props.input[props.id]).length != 0){
-            setPrices(props.input[props.id]);
+        if (Object.keys(prices).length == 0 && Object.keys(props.input[props.id]).length != 1){
+            let copy = Object.assign({},props.input[props.id]);
+            delete copy.count;
+            setPrices(copy);
+            setCount(props.input[props.id].count);
         }
     }
 

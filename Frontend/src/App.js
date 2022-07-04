@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import  React, { useState, useRef} from 'react';
+import  React, { useState, useRef } from 'react';
 import Price from "./Price";
 import Person from "./Person";
 
@@ -12,6 +12,7 @@ function App() {
     const [count, setCount] = useState(0);
 
     const inputMap = useRef({});
+
 
     const changeMap = (id,key,val,bool) => {
         if (bool){
@@ -41,7 +42,7 @@ function App() {
         let copy = JSON.parse(JSON.stringify(people));
         copy[count] = JSON.stringify(0);
         setPeople(copy);
-        inputMap.current[count] = {};
+        inputMap.current[count] = ({count: 0});
         setCount(count+1);
     }
 

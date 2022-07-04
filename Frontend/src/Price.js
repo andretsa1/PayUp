@@ -4,7 +4,7 @@ function Price (props){
     const [price, setPrice] = useState(0);
 
     const set = (event) => {
-        var tmp = (event.target.value === "") ? 0 : parseFloat(event.target.value);
+        var tmp = (event.target.value === "") ? "" : parseFloat(event.target.value);
 
         setPrice(tmp);
         props.update(props.id,tmp);
@@ -17,8 +17,8 @@ function Price (props){
     return (
         <div>
             <label>Prices:</label>
-            {(props.value != null) ? <input value = {props.value} onInput={set}></input> :
-                <input onInput={set}></input>}
+            {(props.value != null) ? <input type="number" value = {props.value} onInput={set}></input> :
+                <input type="number" onInput={set}></input>}
             <button onClick={d}>x</button>
         </div>
     )
