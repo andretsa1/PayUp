@@ -1,20 +1,69 @@
+@import url(sanitize.css);
 .App {
     text-align: center;
 }
 
+body {
+    background-color: white;
+}
+
+h1 {
+    font-size: 40px;
+    font-family: "Lucida Grande";
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+
 #Pay {
-    font-family: Lucida Grande;
-    color: blue;
+    color: #0022ff;
+    float: left;
+    padding-left: 5px;
+    margin-top: 0;
 }
 
 #Up {
-    color: black;
+    color: #222222;
 }
 
 #peoples {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    grid-gap: 20px;
+    align-items: flex-start;
 }
+
+#Bar {
+    background-color: #222222;
+    height: 40px;
+    display: inline-flex;
+    flex-wrap: nowrap;
+
+}
+
+.App {
+    display: grid;
+    vertical-align: center;
+    grid-column: span;
+}
+
+#AddPerson {
+    position: relative;
+    background-color: #222222;
+    color: white;
+    border-style: unset;
+    flex-shrink: 0;
+}
+
+#Bar p{
+    color: white;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 7px;
+    width: 240px;
+    flex-shrink: 0;
+}
+
+.Input {
+    width: 240px;
+}
+
 
