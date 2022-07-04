@@ -1,18 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
 import  React, { useState, useRef } from 'react';
-import Price from "./Price";
 import Person from "./Person";
 
 function App() {
     const [people, setPeople] = useState({});
     const [actualTotal, setActualTotal] = useState(0);
-    const [factor, setFactor] = useState(1);
     const [total, setTotal] = useState(0);
-    const [count, setCount] = useState(0);
 
+    const count = useRef(0);
+    const factor = useRef(1);
     const inputMap = useRef({});
-
 
     const changeMap = (id,key,val,bool) => {
         if (bool){
@@ -29,7 +26,7 @@ function App() {
             total+=parseFloat(people[k]);
         }
         setTotal(total);
-        setFactor(actualTotal/total);
+        factor.current = actualTotal/total;
     }
 
     // const update = (id,res) => {
@@ -39,11 +36,11 @@ function App() {
     // }
 
     const add = () => {
-        let copy = JSON.parse(JSON.stringify(people));
-        copy[count] = JSON.stringify(0);
+        let copy = Object.assign({},people);
+        copy[count.current] = JSON.stringify(0);
         setPeople(copy);
-        inputMap.current[count] = ({count: 0});
-        setCount(count+1);
+        inputMap.current[count.current] = ({count: 0});
+        count.current+=1;
     }
 
     const del = (key) => {
@@ -73,7 +70,7 @@ function App() {
                 {Object.keys(people).map((k) =>
                     <div>
                         <Person key={k} id={k} del={del} input={inputMap.current} changeInput = {changeMap} calcTotal={calcTotal}/>
-                        <p>To Pay: {Math.round(parseFloat(people[k])*factor*1000)/1000}</p>
+                        <p>To Pay: {Math.round(parseFloat(people[k])*(factor.current)*1000)/1000}</p>
                     </div>
                 )}
             </div>
