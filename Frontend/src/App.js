@@ -62,13 +62,18 @@ function App() {
 
     return (
         <div className="App">
-            <h1 id = "Pay">Pay<span id = "Up">Up</span></h1>
-
-            <button onClick={add}>Add New Person</button>
-
+            <div>
+                <h1 id = "Pay">Pay<span id = "Up">Up</span></h1>
+            </div>
+            <div id = "Bar">
+                {Object.keys(people).map((k) =>
+                    <p>Person {k}</p>
+                )}
+                <button id ="AddPerson" onClick={add}>Add New Person</button>
+            </div>
             <div id="peoples">
                 {Object.keys(people).map((k) =>
-                    <div>
+                    <div className={"Input"}>
                         <Person key={k} id={k} del={del} input={inputMap.current} changeInput = {changeMap} calcTotal={calcTotal}/>
                         <p>To Pay: {Math.round(parseFloat(people[k])*(factor.current)*1000)/1000}</p>
                     </div>
