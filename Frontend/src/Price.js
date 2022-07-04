@@ -1,4 +1,4 @@
-import  React, { useState } from 'react';
+import React, { useState } from 'react';
 
 function Price (props){
     const [price, setPrice] = useState(0);
@@ -10,16 +10,16 @@ function Price (props){
         props.update(props.id,tmp);
     }
 
-    const d = () => {
+    const del = () => {
         props.del(props.id);
     }
 
     return (
         <div>
             <label>Prices:</label>
-            {(props.value != null) ? <input type="number" value = {props.value} onInput={set}></input> :
+            {(props.value != null) ? <input type="number" defaultValue = {props.value} onInput={set}></input> :
                 <input type="number" onInput={set}></input>}
-            <button onClick={d}>x</button>
+            <button onClick={del}>x</button>
         </div>
     )
 }
