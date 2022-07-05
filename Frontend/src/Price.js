@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./Price.css";
 
 function Price (props){
     const [price, setPrice] = useState(0);
@@ -17,9 +18,9 @@ function Price (props){
     return (
         <div>
             <label>Prices:</label>
-            {(props.value != null) ? <input type="number" defaultValue = {props.value} onInput={set}></input> :
-                <input type="number" onInput={set}></input>}
-            <button onClick={del}>x</button>
+            {(props.value != null) ? <input className="input" type="number" defaultValue = {props.value} onInput={set}></input> :
+                <input className="input" type="number" onInput={set}></input>}
+            <button id="del" onClick={del}>x</button>
         </div>
     )
 }

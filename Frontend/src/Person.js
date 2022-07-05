@@ -40,7 +40,7 @@ function Person(props) {
     }
 
     const check = () => {
-        if (Object.keys(prices).length == 0 && Object.keys(props.input[props.id]).length != 1){
+        if (Object.keys(prices).length === 0 && Object.keys(props.input[props.id]).length !== 1){
             let copy = Object.assign({},props.input[props.id]);
             delete copy.count;
             setPrices(copy);
