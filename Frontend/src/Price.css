@@ -1,5 +1,7 @@
-#del{
-    background-color: red;
+#pricetext {
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 13px;
+    font-weight: 700;
 }
 
 .input {

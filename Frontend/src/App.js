@@ -24,19 +24,23 @@ function App() {
     }
 
     const calculate = () => {
-        let total = 0;
+        if (actualTotal < total) {
+            alert("The total with tip and tax has to be larger than subtotal!");
+            return;
+        }
+        let temp = 0;
         for (const k in people){
-            total+=parseFloat(people[k]);
+            temp+=parseFloat(people[k]);
         }
         setTotal(total);
-        factor.current = actualTotal/total;
+        factor.current = actualTotal/temp;
+        update();
     }
 
-    // const update = (id,res) => {
-    //     var copy = JSON.parse(JSON.stringify(people));
-    //     copy[id] = res;
-    //     setPeople(copy);
-    // }
+    const update = () => {
+        var copy = JSON.parse(JSON.stringify(people));
+        setPeople(copy);
+    }
 
     const add = () => {
         let copy = Object.assign({},people);
@@ -63,31 +67,38 @@ function App() {
         setPeople(copy);
     }
 
+    const countPeople = () => {
+        let personCount = 1;
+        return (Object.keys(people).map((k) =>
+            <p>Person {personCount++}</p>
+        ))
+    }
+
     return (
         <div className="App">
-            <div>
+            <div id="head">
                 <h1 id = "Pay">Pay<span id = "Up">Up</span></h1>
             </div>
             <div id = "Bar">
-                {Object.keys(people).map((k) =>
-                    <p>Person {k}</p>
-                )}
+                {countPeople()}
                 <button ref={autoScroll} id ="AddPerson" onClick={add}>Add New Person</button>
             </div>
             <div id="peoples">
                 {Object.keys(people).map((k) =>
                     <div className={"Input"}>
                         <Person key={k} id={k} del={del} input={inputMap.current} changeInput = {changeMap} calcTotal={calcTotal}/>
-                        <p>To Pay: {Math.round(parseFloat(people[k])*(factor.current)*1000)/1000}</p>
+                        <p>Amount Due: {Math.round(parseFloat(people[k])*(factor.current)*1000)/1000}</p>
                     </div>
                 )}
             </div>
 
             <div>
-                <p>Total: {Math.round(total*1000)/1000}</p>
-                <label>Total with Tip and Tax: </label>
-                <input onChange={totalWithTipTax}></input>
-                <button onClick={calculate}>Calculate</button>
+                {/* <p>Total: {Math.round(total*1000)/1000}</p> */}
+                <label id="total">Total: </label>
+                <input onChange={totalWithTipTax} placeholder="including tip and tax" type="number"></input>
+            </div>
+            <div>
+                <button id="calculatebutton" onClick={calculate}>Calculate</button>
             </div>
         </div>
     );

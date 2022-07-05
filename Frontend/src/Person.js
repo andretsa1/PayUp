@@ -50,18 +50,17 @@ function Person(props) {
 
     return (
         <div className="Person">
-            <button className = "Prices" onClick={add}>Add</button>
-            <button className = "Prices" onClick={()=>props.del(props.id)}>Remove</button>
+            {/* <div>
+                <p>SubTotal: {Math.round(total*1000)/1000}</p>
+            </div> */}
+            <button className = "Prices" id="add" onClick={add}>Add</button>
+            <button className = "Prices" id="remove" onClick={()=>props.del(props.id)}>Remove</button>
             {check()}
             {(Object.keys(prices).map((k) =>
                 <div>
                     <Price key={k} id={k} update={update} del={del} value={props.input[props.id][k]}/>
                 </div>
             ))}
-
-            <div>
-                <p>SubTotal: {Math.round(total*1000)/1000}</p>
-            </div>
         </div>
     );
 }

@@ -17,7 +17,7 @@ function Price (props){
 
     return (
         <div>
-            <label>Prices:</label>
+            <label id="pricetext">Price: </label>
             {(props.value != null) ? <input className="input" type="number" defaultValue = {props.value} onInput={set}></input> :
                 <input className="input" type="number" onInput={set}></input>}
             <button id="del" onClick={del}>x</button>
