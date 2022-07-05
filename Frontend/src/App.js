@@ -1,15 +1,18 @@
 import './App.css';
-import  React, { useState, useRef } from 'react';
+import  React, { useState, useEffect, useRef } from 'react';
 import Person from "./Person";
 
 function App() {
     const [people, setPeople] = useState({});
     const [actualTotal, setActualTotal] = useState(0);
     const [total, setTotal] = useState(0);
+    const [count, setCount] = useState(0);
 
-    const count = useRef(0);
     const factor = useRef(1);
     const inputMap = useRef({});
+    const autoScroll = useRef(null);
+
+    useEffect(() => autoScroll.current.scrollIntoView(),[count]);
 
     const changeMap = (id,key,val,bool) => {
         if (bool){
@@ -37,10 +40,10 @@ function App() {
 
     const add = () => {
         let copy = Object.assign({},people);
-        copy[count.current] = JSON.stringify(0);
+        copy[count] = JSON.stringify(0);
         setPeople(copy);
-        inputMap.current[count.current] = ({count: 0});
-        count.current+=1;
+        inputMap.current[count] = ({count: 0});
+        setCount(count+1);
     }
 
     const del = (key) => {
@@ -69,7 +72,7 @@ function App() {
                 {Object.keys(people).map((k) =>
                     <p>Person {k}</p>
                 )}
-                <button id ="AddPerson" onClick={add}>Add New Person</button>
+                <button ref={autoScroll} id ="AddPerson" onClick={add}>Add New Person</button>
             </div>
             <div id="peoples">
                 {Object.keys(people).map((k) =>
