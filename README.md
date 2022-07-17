@@ -1,4 +1,4 @@
-## PayUp
-#Tech Stack
+# PayUp
+## Tech Stack
 React.js
 CSS
