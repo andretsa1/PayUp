@@ -1,4 +1,6 @@
 # PayUp
 ## Tech Stack
-React.js
-CSS
+* React.js
+* CSS
+## Introduction
+## Walkthrough
